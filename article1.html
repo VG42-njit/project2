@@ -1,0 +1,34 @@
+<html>
+    <A href="article1.html">Article 1 :pylint and OOPS Glossary</A> <A href="article2.html">Article 2:AAA Testing</A> <A href="article3.html">Article 3:Calculater Program:Encapsulation,Inheritance,Polymorphism and Abstraction</A> <A href="article4.html">Article 4:Seperation of Concerns</A>
+
+    <h1>Article 1 :pylint and OOPS Glossary</h1>
+    <p1>
+        Pylint is meant to be called from the command line. The usage is
+pylint [options] modules_or_packages
+You should give Pylint the name of a python package or module, or some number of packages or modules. Pylint will not import this package or module, though uses Python internals to locate them and as such is subject to the same rules and configuration. You should pay attention to your PYTHONPATH, since it is a common error to analyze an installed version of a module instead of the development version.
+It is also possible to analyze Python files, with a few restrictions. The thing to keep in mind is that Pylint will try to convert the file name to a module name, and only be able to process the file if it succeeds.
+pylint mymodule.py
+should always work since the current working directory is automatically added on top of the python path
+pylint directory/mymodule.py
+will work if directory is a python package (i.e. has an __init__.py file or it is an implicit namespace package) or if "directory" is in the python path.
+</p1>
+<h3>Glossary-</h3>
+<p>-Factory - Factory method is a creational design pattern which solves the problem of creating product objects without specifying their concrete classes. Factory Method defines a method, which should be used for creating objects instead of direct constructor call ( new operator).</p>
+<p>-Instantiation - Instantiating a class is creating a copy of the class which inherits all class variables and methods. Instantiating a class in Python is simple. To instantiate a class, we simply call the class as if it were a function, passing the arguments that the __init__ method defines. The return value will be the newly created object.</p>
+<P>-Object − A unique instance of a data structure that's defined by its class. An object comprises both data members (class variables and instance variables) and methods.</P>
+<p>-Class − A user-defined prototype for an object that defines a set of attributes that characterize any object of the class. The attributes are data members (class variables and instance variables) and methods, accessed via dot notation.</p>
+<p>-Class variable − A variable that is shared by all instances of a class. Class variables are defined within a class but outside any of the class's methods. Class variables are not used as frequently as instance variables are.</p>
+<P>-Inheritance − The transfer of the characteristics of a class to other classes that are derived from it.</P>
+<p>-Namespace - Namespaces in Python. A namespace is a collection of currently defined symbolic names along with information about the object that each name references. You can think of a namespace as a dictionary in which the keys are the object names and the values are the objects themselves.</p>
+<p>-Constructor - A constructor is a special kind of method that Python calls when it instantiates an object using the definitions found in your class. Python relies on the constructor to perform tasks such as initializing (assigning values to) any instance variables that the object will need when it starts.</p>
+<p>-Fixture - Fixtures define the steps and data that constitute the arrange phase of a test (see Anatomy of a test). In pytest, they are functions you define that serve this purpose. They can also be used to define a test's act phase; this is a powerful technique for designing more complex tests.</p>
+<p>-Type Hint - Type hinting is a formal solution to statically indicate the type of a value within your Python code. It was specified in PEP 484 and introduced in Python 3.5.</p>
+<p>-Type Cast - Type casting is a method used to change the variables/ values declared in a certain data type into a different data type to match the operation required to be performed by the code snippet. In python, this feature can be accomplished by using constructor functions like int(), string(), float(), etc.</p>
+<p>-Unit test - The unit test framework in Python is called unittest , which comes packaged with Python. Unit testing makes your code future proof since you anticipate the cases where your code could potentially fail or produce a bug. Though you cannot predict all of the cases, you still address most of them.</p>
+<p>-Static - Static methods in Python are extremely similar to python class level methods, the difference being that a static method is bound to a class rather than the objects for that class. This means that a static method can be called without an object for that class.</p>
+<p>-Class method - Class methods are methods that are called on a class rather than an instance. They are typically used as part of an object meta-model. I.e, for each class, defined an instance of the class object in the meta-model is created.</p>
+<p>-Method − A special kind of function that is defined in a class definition.</p>
+<p>-Function overloading − The assignment of more than one behavior to a particular function. The operation performed varies by the types of objects or arguments involved.</p>
+<p>-Facade - Facade is a structural design pattern that provides a simplified (but limited) interface to a complex system of classes, library or framework. While Facade decreases the overall complexity of the application, it also helps to move unwanted dependencies to one place.</p>
+
+</html>

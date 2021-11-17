@@ -1,0 +1,43 @@
+<html>
+    <A href="article1.html">Article 1 :pylint and OOPS Glossary</A> <A href="article2.html">Article 2:AAA Testing</A> <A href="article3.html">Article 3:Calculater Program:Encapsulation,Inheritance,Polymorphism and Abstraction</A> <A href="article4.html">Article 4:Seperation of Concerns</A>
+
+    <h>Calculater Program:Encapsulation,Inheritance,Polymorphism and Abstraction</h>
+    <p>
+        <h3>Encapsulation</h3>
+        <p1>Encapsulation is the packing of data and functions that work on that data within a single object. By doing so, you can hide the internal state of the object from the outside. This is known as information hiding. 
+            I used encapsulation in my calc programm here -    
+             <p>def __init__(self,values: tuple):</p>
+            
+            self.values = Calculation.convert_args_to_tuple_of_float(values)
+        </p1>
+        <h3>Polymorphism</h3>
+        <p2>Polymorphism in python defines methods in the child class that have the same name as the methods in the parent class. In inheritance, the child class inherits the methods from the parent class. Also, it is possible to modify a method in a child class that it has inherited from the parent class.In Python, Polymorphism lets us define methods in the child class that have the same name as the methods in the parent class. In inheritance, the child class inherits the methods from the parent class. However, it is possible to modify a method in a child class that it has inherited from the parent class. This is particularly useful in cases where the method inherited from the parent class doesn’t quite fit the child class. In such cases, we re-implement the method in the child class. This process of re-implementing a method in the child class is known as Method Overriding. 
+             </p2>
+
+        <h3>Inheritance</h3>
+        <p3> Inheritance is the capability of one class to derive or inherit the properties from another class. The benefits of inheritance are: 
+           <p> -It represents real-world relationships well.</p>
+           <P>-It provides reusability of a code. We don’t have to write the same code again and again. Also, it allows us to add more features to a class without modifying it.</P>
+           <P>-It is transitive in nature, which means that if class B inherits from another class A, then all the subclasses of B would automatically inherit from class A</P> 
+           I used inheritance in my calc programm as well -
+        
+         <p>from calc.calculations.subtraction import Subtraction</p>
+
+            <p>def test_calculation_subtraction():</p>
+                
+               <p> mynumbers = (1.0,2.0)</p>
+                <p>subtraction = Subtraction(mynumbers)</p>
+                
+                
+               <p> assert subtraction.get_result() == -3</p>
+            </p>
+        </p3>
+        <h3>Abstraction</h3>
+        <p4>
+            <p>An abstract class can be considered as a blueprint for other classes. It allows you to create a set of methods that must be created within any child classes built from the abstract class. A class which contains one or more abstract methods is called an abstract class. An abstract method is a method that has a declaration but does not have an implementation. While we are designing large functional units we use an abstract class. When we want to provide a common interface for different implementations of a component, we use an abstract class. 
+            </p>
+            <p>By defining an abstract base class, you can define a common Application Program Interface(API) for a set of subclasses. This capability is especially useful in situations where a third-party is going to provide implementations, such as with plugins, but can also help you when working in a large team or with a large code-base where keeping all classes in your mind is difficult or not possible. </p>
+        <p>"from calc.calculations.subtraction import Subtraction" this is the use of an abtract Method</p>
+    </p4>
+    </p>
+</html>

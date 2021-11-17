@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Using Azure file share as volumes in ACI containers    </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <A href="article1.html">Article 1 :pylint and OOPS Glossary</A> <A href="article2.html">Article 2:AAA Testing</A> <A href="article3.html">Article 3:Calculater Program:Encapsulation,Inheritance,Polymorphism and Abstraction</A> <A href="article4.html">Article 4:Seperation of Concerns</A>
+    <body>
+        <h1>Using Azure file share as volumes in ACI containers</h1>
+        <p>You can deploy containers or Compose applications that use persistent data stored in volumes. Azure File Share can be used to support volumes for ACI containers.</p>
+        <p>Using an existing Azure File Share with storage account name <code class="language-console">mystorageaccount</code> and file share name <code class="language-console">myfileshare</code>, you can specify a volume in your deployment <code class="language-console">run</code> command as follows:</p>
+        <p><code class="language-console">$ docker run -v mystorageaccount/myfileshare:/target/path myimage</code></p>
+        <p>The runtime container will see the file share content in <code class="language-console">/target/path.</code></p>
+        <p>In a Compose application, the volume specification must use the following syntax in the Compose file:</p>
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">myservice</span><span class="pi">:</span>
+            <span class="na">image</span><span class="pi">:</span> <span class="s">nginx</span>
+            <span class="na">volumes</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s">mydata:/mount/testvolumes</span>
+          
+          <span class="na">volumes</span><span class="pi">:</span>
+            <span class="na">mydata</span><span class="pi">:</span>
+              <span class="na">driver</span><span class="pi">:</span> <span class="s">azure_file</span>
+              <span class="na">driver_opts</span><span class="pi">:</span>
+                <span class="na">share_name</span><span class="pi">:</span> <span class="s">myfileshare</span>
+                <span class="na">storage_account_name</span><span class="pi">:</span> <span class="s">mystorageaccount</span>
+          </code></pre></div></div>
+          <p>In single or multi-container deployments, the Docker CLI will use your Azure login to fetch the key to the storage account, and provide this key with the container deployment information, so that the container can access the volume. Volumes can be used from any file share in any storage account you have access to with your Azure login. You can specify <code class="language-console">rw</code> (read/write) or <code class="language-console">ro</code> (read only) when mounting the volume (<code class="language-console">rw</code> is the default).</p>
+    
+          <h2>Managing Azure volumes</h2>
+          <p>To create a volume that you can use in containers or Compose applications when using your ACI Docker context, you can use the <code class="language-console">docker volume create</code> command, and specify an Azure storage account name and the file share name:</p>
+          <p><code class="language-console">$ docker --context aci volume create test-volume2 --storage-account mystorageaccount</code></p>
+          <p>Alternatively, you can create an Azure storage account or a file share using the Azure portal, or the az command line.</p>
+          <p>You can also list volumes that are available for use in containers or Compose applications:</p>
+          <p><code class="language-console">$ docker --context aci volume ls</code></p>
+          <p>To delete a volume and the corresponding Azure file share, use the <code class="language-console">volume rm</code> command:</p>
+          <p><code class="language-console">$ docker --context aci volume rm mystorageaccount/test-volume</code></p>
+          <p>This permanently deletes the Azure file share and all its data.<br/>When deleting a volume in Azure, the command checks whether the specified file share is the only file share available in the storage account. If the storage account is created with the <code class="language-console">docker volume create</code> command, <code class="language-console">docker volume rm</code> also deletes the storage account when it does not have any file shares. If you are using a storage account created without the <code class="language-console">docker volume create</code> command (through Azure portal or with the az command line for example), <code class="language-console">docker volume rm</code>    does not delete the storage account, even when it has zero remaining file shares.</p>
+    </body>    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploying Docker containers on Azure</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Deploying Docker containers on Azure</h1>
+
+    <h2>Overview</h2>
+    <p>The Docker Azure Integration enables developers to use native Docker commands to run applications in Azure Container Instances (ACI) when building cloud-native applications. The new experience provides a tight integration between Docker Desktop and Microsoft Azure allowing developers to quickly run applications using the Docker CLI or VS Code extension, to switch seamlessly from local development to cloud deployment.</p>
+    <p>We can build and run Azure-based apps with the use of Docker containers.This helps deploy apps quickly and safely. There are many advantages to using Azure-based apps on Docker, such as :
+        <ul>
+            <li>Azure easy log in functionality</li>
+            <li>Easy switch from local context to cloud context</li>
+            <li>Improve the efficiency of the development process</li>
+        </ul>
+    </p>
+    <h2>Prerequisites</h2>
+    <p>To deploy Docker containers on Azure, you need to:</p>
+    <ol>
+        <li>Download and install the latest version of Docker Desktop.</li>
+        <ul>
+            <li><a href="https://docs.docker.com/desktop/mac/install/">Download for Mac</a></li>
+            <li><a href="https://docs.docker.com/desktop/windows/install/">Download for Windows</a></li>
+        </ul>
+        <li>Make sure you have an Azure subscription.</li>
+        <li>Have a basic understanding of Docker and experience with Docker commands.</li>
+        <li>Have an experience with the creation of web apps with App Service.</li>
+    </ol>
+    <h2>Run Docker containers on ACI</h2>
+    <p>Docker not only runs containers locally, but also enables developers to seamlessly deploy Docker containers on ACI using <code class="language-console">docker run</code> or deploy multi-container applications defined in a Compose file using the <code class="language-console">docker compose up</code> command. <br/>Or, you can follow the steps below using the Azure protal.</p>
+    <h3><i>Step 1 : Creating a container registry on Azure</i></h3>
+    <p>First, to create a container registry on Azure for storing a Docker container, go to Azure portal home page and click <b>Create</b>, then <b>Container Registry</b> from the menu. <br/> Fill in the info, like the name of the registry and location in the next page. Review and create your registry after confirming the info entered.</p>
+    <h3><i>Step 2 : Creating & building a Docker image</i></h3>
+    <p>Next, we need to create a Dockerfile so that the image can run our web app. It will later be pushed to and built on the container registry of Azure.</p>
+    <p>Create a new file named Dockerfile with no extension and fill it with the info necessary to run the project, like the base image, the source from which to copy the project, the working directory and the command to install dependencies.</p>
+    <p>Next is to build the image using the Dockerfile just now created with the following command :</p>
+    <p><code class="language-console">$ az acr build --registry &lt;container_registry_name&gt; --image mynodeimage .
+    </code></p>
+    <p>The image created was named mynodeimage and it will appear in the Azure Container Registry. To view the image, go to your Azure resources page in the portal. Click your registry then click <b>Repositories</b> from the Services section.</p>
+    <h3><i>Step 3 : Enabling Docker access</i></h3>
+    <p>Now for deploying the app, Docker access in ACR needs to be enabled. This allows Azure to have access to the stored containers.</p>
+    <p>Go to the Resources page and open the overview page of the registry, then click <b>Access key</b> in the setting section. Ensure that <b>Admin user</b> in enabled.</p>
+    <h3><i>Step 4 : Creating the web app</i></h3>
+    <p>To create the web app, go to the Azure portal and click <b>Home > Create > Web App</b>. Give the app a name and choose <b>Docker container</b> as the Publish option and <b>Linux</b> as the OS.</p>
+    <p>In the next page, configure your docker setting according to the data entered previously in the Dockerfile, and then click <b>Create</b> after reviewing the details.</p>
+    <p>You can now see the app created using the address <code class="language-console">https://[YOUR_WEB_APP_NAME].azurewebsites.net</code>, and replacing [YOUR_WEB_APP_NAME] with the name you gave the app.</p>
+    <p>This was all about Docker Azure Integration. To know more about using Azure file share as volumes in ACI containers, follow this <a href="azure-file-share.html">link</a></p>
+</body>
+</html>

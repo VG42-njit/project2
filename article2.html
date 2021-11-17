@@ -1,0 +1,20 @@
+<html> 
+    <A href="article1.html">Article 1 :pylint and OOPS Glossary</A> <A href="article2.html">Article 2:AAA Testing</A> <A href="article3.html">Article 3:Calculater Program:Encapsulation,Inheritance,Polymorphism and Abstraction</A> <A href="article4.html">Article 4:Seperation of Concerns</A>
+
+    <h1>AAA Testing</h1>
+    <p>A test is a procedure that exercises a behavior to determine if the behavior functions correctly. There are several different kinds of tests, like unit tests, integration tests, or end-to-end tests, but all functional tests do the same basic thing: they try something and report PASS or FAIL.
+        Testing provides an empirical feedback loop for development. That’s how testing keeps us safe. With tests, we know when things break. Without tests, coding can be dangerous. We don’t want to deploy big ol’ bugs!
+        So, if we intend to spend time writing tests, how can we write good tests? There’s a simple but powerful pattern I like to follow: Arrange-Act-Assert.
+    </p>
+    <h2>The Pattern</h2>
+    <p2>Arrange-Act-Assert is a great way to structure test cases. It prescribes an order of operations:
+
+        <p>Arrange puts and targets. Arrange steps should set up the test case. Does the test require any objects or special settings? Does it need to prep a database? Does it need to log into a web app? Handle all of these operations at the start of the test.</p>
+        <p>Act on the target behavior. Act steps should cover the main thing to be tested. This could be calling a function or method, calling a REST API, or interacting with a web page. Keep actions focused on the target behavior.</p>
+        <p>Assert  expected outcomes. Act steps should elicit some sort of response. Assert steps verify the goodness or badness of that response. Sometimes, assertions are as simple as checking numeric or string values. Other times, they may require checking multiple facets of a system. Assertions will ultimately determine if the test passes or fails.</p>
+    </p2>
+    <h2>Importance of testing</h2>
+    <p>Arrange-Act-Assert is powerful because it is simple. It forces tests to focus on independent, individual behaviors. It separates setup actions from the main actions. It requires test to make verifications and not merely run through motions. Notice how the pattern is not Arrange-Act-Assert-Act-Assert – subsequent actions and assertions belong in separate tests! Arrange-Act-Assert is a great pattern to follow for writing good functional tests.
+        For the identification of the issues before the occurrence in the critical environment, it is a prerequisite to performing the testing of software. Software testing is important because if there are any bugs or errors in the software, they can be identified early and fixed before the software product is delivered.
+    </p>
+</html>

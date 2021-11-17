@@ -1,0 +1,12 @@
+services:
+    myservice:
+        image: nginx
+        volumes:
+        - mydata:/mount/testvolumes
+
+volumes:
+  mydata:
+    driver: azure_file
+    driver_opts:
+      share_name: myfileshare
+      storage_account_name: mystorageaccount
